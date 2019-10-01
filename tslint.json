@@ -1,6 +1,9 @@
 {
   "extends": [
-    "tslint-config-standard",
+    "tslint:recommended",
     "tslint-config-prettier"
-  ]
+  ],
+  "rules": {
+    "member-access": false
+  }
 }
