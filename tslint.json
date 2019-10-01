@@ -4,6 +4,7 @@
     "tslint-config-prettier"
   ],
   "rules": {
-    "member-access": false
+    "member-access": false,
+    "interface-name": false
   }
 }
