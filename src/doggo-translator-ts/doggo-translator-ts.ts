@@ -1,8 +1,10 @@
 import { TranslatorWithDefaultResponse } from '../models/translator-with-default-response.model';
-import { TRANSLATION_TOKENS_ENUM } from '../i18n/tokens/translation-tokens.enum';
+import { LANGUAGE_TOKENS_ENUM } from '../i18n/tokens/translation-tokens.enum';
 import { TranslatorWithDefaultLanguage } from '../models/translator-with-default-language.model';
 import { TokensService } from '../i18n';
 import { LocaleLoaderService } from '../i18n/locale-loader.service';
+import { ErrorService } from '../util/error.service';
+import { DoggoTranslatorConfig } from './doggo-translator-config.interface';
 
 // Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
 // import "core-js/fn/array.find"
@@ -14,12 +16,13 @@ import { LocaleLoaderService } from '../i18n/locale-loader.service';
 export class DoggoTranslator
   implements TranslatorWithDefaultResponse, TranslatorWithDefaultLanguage {
   readonly defaultResponse = 'Bork';
-  readonly defaultLanguage = TRANSLATION_TOKENS_ENUM.english;
+  readonly defaultLanguage = LANGUAGE_TOKENS_ENUM.english;
   private languageToken!: string;
   private localeLoaderService = new LocaleLoaderService();
 
-  constructor(languageToken: TRANSLATION_TOKENS_ENUM) {
-    this.setLanguage(languageToken);
+  constructor(config: DoggoTranslatorConfig) {
+    this.configValidation(config);
+    this.setUpTranslator(config);
   }
 
   /**
@@ -32,7 +35,7 @@ export class DoggoTranslator
       return this.defaultResponse;
     }
 
-    const languageFile: { [key: string]: any } = this.loadLocaleIntoMemory();
+    const languageFile: { [key: string]: any } = this.localeLoaderService.getTranslationsMap();
 
     for (const key in languageFile) {
       if (languageFile.hasOwnProperty(key)) {
@@ -60,31 +63,49 @@ export class DoggoTranslator
    * Given a language token, will attempt to set the current language.
    * @param languageToken the language token
    */
-  setLanguage(languageToken: TRANSLATION_TOKENS_ENUM): TRANSLATION_TOKENS_ENUM {
+  setLanguage(languageToken: LANGUAGE_TOKENS_ENUM): void {
     if (!this.languageAvailable(languageToken)) {
-      this.logError(`The language was not found, defaulting to ${this.defaultLanguage}`);
-      return (this.languageToken = this.defaultLanguage);
+      ErrorService.logError(`The language was not found, defaulting to ${this.defaultLanguage}`);
+      this.languageToken = this.defaultLanguage;
+      return this.localeLoaderService.loadLibraryTranslations(languageToken);
     }
-    return (this.languageToken = languageToken);
+    this.languageToken = languageToken;
+    return this.localeLoaderService.loadLibraryTranslations(languageToken);
+  }
+
+  private configValidation(config: DoggoTranslatorConfig): void {
+    if (!config || (!config.languageToken && !config.userTranslationsMap)) {
+      ErrorService.throw(
+        'Invalid Config Provided. You must provide at least one of the following: \n\t`languageToken` or `userTranslationsMap`'
+      );
+    }
+  }
+
+  private setUpTranslator(config: DoggoTranslatorConfig): void {
+    if (!config.userTranslationsMap) {
+      return this.setLanguage(config.languageToken as LANGUAGE_TOKENS_ENUM);
+    }
+    this.setLanguage(LANGUAGE_TOKENS_ENUM.userDefined);
+    return this.localeLoaderService.setTranslationsMap(config.userTranslationsMap);
   }
 
   /**
    * Gets the language file for the current language token.
    */
-  private loadLocaleIntoMemory() {
-    switch (this.languageToken) {
-      case TRANSLATION_TOKENS_ENUM.english:
-        return this.localeLoaderService.loadFile(`${this.languageToken}.json`);
-      default:
-        return this.localeLoaderService.loadFile(`${this.defaultLanguage}.json`);
-    }
-  }
+  // private loadLocaleIntoMemory() {
+  //   switch (this.languageToken) {
+  //     case LANGUAGE_TOKENS_ENUM.english:
+  //       return this.localeLoaderService.loadFile(`${this.languageToken}.json`);
+  //     default:
+  //       return this.localeLoaderService.loadFile(`${this.defaultLanguage}.json`);
+  //   }
+  // }
 
   /**
    * Given a language token, will return whether the language is available.
    * @param language language token
    */
-  private languageAvailable(languageToken: TRANSLATION_TOKENS_ENUM): boolean {
+  private languageAvailable(languageToken: LANGUAGE_TOKENS_ENUM): boolean {
     return TokensService.languageAvailable(languageToken);
   }
 
@@ -127,14 +148,5 @@ export class DoggoTranslator
    */
   private escapeRegex(target: string): string {
     return target.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-  }
-
-  /**
-   * Logs an error message to the console with a prefix.
-   * @param message Message to log
-   */
-  private logError(message: string) {
-    const error = new Error(`[DoggoTranslatorTS] ${message}`);
-    console.error(error); //tslint:disable-line
   }
 }

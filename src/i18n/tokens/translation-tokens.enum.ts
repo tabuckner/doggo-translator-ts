@@ -1,3 +1,4 @@
-export enum TRANSLATION_TOKENS_ENUM {
-  english = 'en'
+export enum LANGUAGE_TOKENS_ENUM {
+  english = 'en',
+  userDefined = 'userDefined'
 }

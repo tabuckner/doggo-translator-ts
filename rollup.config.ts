@@ -7,12 +7,15 @@ import json from 'rollup-plugin-json';
 const pkg = require('./package.json') // tslint:disable-line
 
 const libraryName = pkg.name;
+const fileName = libraryName.split('/')[1];
+const moduleName = fileName.split('-').map(el => el.slice(0,1)).join('').toUpperCase();
 
 export default {
   input: 'src/index.ts',
   output: [
     { file: pkg.main, name: camelCase(libraryName), format: 'umd', sourcemap: true },
     { file: pkg.module, format: 'es', sourcemap: true },
+    { file: `dist/${fileName}.min.js`, format: 'iife', sourcemap: true, name: moduleName },
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
   external: [],

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Test</title>
+</head>
+<body>
+  <p><strong>Original:</strong> <span id="text"></span></p>
+  <p><strong>Translated:</strong> <span id="translated"></span></p>
+
+  <script src="../../dist/doggo-translator-ts.min.js"></script>
+  <script>
+
+    const myTranslator = new DTT.DoggoTranslator({ userTranslationsMap: { hey: 'hi', friend: 'frenn', run: 'floop' } });
+    const text = 'Hey friend, do you want to go for a run?'
+    const translated = myTranslator.translateSentence(text)
+    document.querySelector('#text').innerHTML = text;
+    document.querySelector('#translated').innerHTML = translated;
+  </script>
+</body>
+</html>
