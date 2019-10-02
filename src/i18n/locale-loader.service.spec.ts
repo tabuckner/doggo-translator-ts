@@ -1,6 +1,7 @@
 import { LocaleLoaderService } from './locale-loader.service';
-import * as fs from 'fs';
-import * as path from 'path';
+import { LANGUAGE_TOKENS_ENUM } from './tokens/translation-tokens.enum';
+import { EN_TRANSLATIONS } from './locales/en';
+import { ErrorService } from '../util/error.service';
 
 describe('LocaleLoaderService', () => {
   const instance = new LocaleLoaderService();
@@ -9,27 +10,35 @@ describe('LocaleLoaderService', () => {
     expect(instance).toBeInstanceOf(LocaleLoaderService);
   });
 
-  describe('#loadFile', () => {
-    beforeEach(() => {
-      spyOn(fs, 'readFileSync').and.returnValue(true);
+  describe('#setTranslationsMap', () => {
+    it('should do that...', () => {
+      const mockData = { that: true };
+      instance.setTranslationsMap(mockData as any);
+      expect(instance['translationsMap']).toBe(mockData);
+    });
+  });
+
+  describe('#loadLibraryTranslations', () => {
+    it('should switch on LANGUAGE_TOKENS_ENUM', () => {
+      spyOn(instance, 'setTranslationsMap').and.returnValue(true);
+      instance.loadLibraryTranslations(LANGUAGE_TOKENS_ENUM.english);
+      expect(instance.setTranslationsMap).toHaveBeenCalledWith(EN_TRANSLATIONS);
+    });
+  });
+
+  describe('#getTranslationsMap', () => {
+    it('should error for empty maps', () => {
+      spyOn(ErrorService, 'logError').and.returnValue(true);
+      instance.setTranslationsMap({});
+      instance.getTranslationsMap();
+      expect(ErrorService.logError).toHaveBeenCalled();
     });
 
-    it('should load library files', () => {
-      const mockFilePath = './test-file.json';
-      instance['loadFile'](mockFilePath);
-      expect(fs.readFileSync).toHaveBeenCalledWith(
-        `${path.resolve(__dirname, './locales', mockFilePath)}`,
-        { encoding: 'utf8' }
-      );
-    });
-
-    it('should load user defined file paths', () => {
-      const userDirectory = 'my/nested/dir';
-      const mockFilePath = './test-file.json';
-      instance['loadFile'](`${path.join(userDirectory, mockFilePath)}`, true);
-      expect(fs.readFileSync).toHaveBeenCalledWith(`${path.join(userDirectory, mockFilePath)}`, {
-        encoding: 'utf8'
-      });
+    it('should return current map', () => {
+      const mockMap = { test: 'true' };
+      instance.setTranslationsMap(mockMap);
+      const testEval = instance.getTranslationsMap();
+      expect(testEval).toBe(mockMap);
     });
   });
 });

@@ -1,5 +1,7 @@
-import { DoggoTranslator, TRANSLATION_TOKENS_ENUM } from '../index';
+import { DoggoTranslator, LANGUAGE_TOKENS_ENUM } from '../index';
 import { TokensService } from '../i18n';
+import { ErrorService } from '../util/error.service';
+import { DoggoTranslatorConfig } from './doggo-translator-config.interface';
 
 /**
  * DoggoTranslator
@@ -9,7 +11,7 @@ describe('DoggoTranslator', () => {
 
   it('DoggoTranslator is instantiable', () => {
     expect(instance).toBeInstanceOf(DoggoTranslator);
-    expect(instance['languageToken']).toBe(TRANSLATION_TOKENS_ENUM.english);
+    expect(instance['languageToken']).toBe(LANGUAGE_TOKENS_ENUM.english);
   });
 
   describe('#translateSentence', () => {
@@ -20,22 +22,26 @@ describe('DoggoTranslator', () => {
     });
 
     it('should return the input if there isnt a translation', () => {
-      spyOnPrivate(instance, 'loadLocaleIntoMemory').and.returnValue({ nope: 'nopers' });
+      spyOnPrivate(instance['localeLoaderService'], 'getTranslationsMap').and.returnValue({
+        nope: 'nopers'
+      });
       const mockInput = 'failure';
       const testEval = instance.translateSentence(mockInput);
       expect(testEval).toBe(mockInput);
     });
 
     it('should get the language file', () => {
-      spyOnPrivate(instance, 'loadLocaleIntoMemory').and.returnValue(true);
+      spyOnPrivate(instance['localeLoaderService'], 'getTranslationsMap').and.returnValue(true);
       const input = 'testing';
       instance.translateSentence(input);
-      expect(instance['loadLocaleIntoMemory']).toHaveBeenCalled();
+      expect(instance['localeLoaderService'].getTranslationsMap).toHaveBeenCalled();
     });
 
     it('should be able to translate english => doggo', () => {
       const mockLanguageFile = { barking: 'borking' };
-      spyOnPrivate(instance, 'loadLocaleIntoMemory').and.returnValue(mockLanguageFile);
+      spyOnPrivate(instance['localeLoaderService'], 'getTranslationsMap').and.returnValue(
+        mockLanguageFile
+      );
       spyOnPrivate(instance, 'translateSingleEntry').and.returnValue(true);
       const mockLanguageKey = Object.keys(mockLanguageFile)[0];
       const input = mockLanguageKey;
@@ -49,7 +55,9 @@ describe('DoggoTranslator', () => {
 
     it('should be able to translate english => doggo', () => {
       const mockLanguageFile = { barking: 'borking' };
-      spyOnPrivate(instance, 'loadLocaleIntoMemory').and.returnValue(mockLanguageFile);
+      spyOnPrivate(instance['localeLoaderService'], 'getTranslationsMap').and.returnValue(
+        mockLanguageFile
+      );
       spyOnPrivate(instance, 'translateSingleEntry').and.returnValue(true);
       const mockLanguageKey = Object.keys(mockLanguageFile)[0];
       const input = mockLanguageKey;
@@ -73,40 +81,57 @@ describe('DoggoTranslator', () => {
   describe('#setLanguage', () => {
     it('should use the default language if one is not supplied', () => {
       spyOnPrivate(instance, 'languageAvailable').and.returnValue(false);
-      spyOnPrivate(instance, 'logError').and.returnValue(true);
-      instance.setLanguage('asdf' as TRANSLATION_TOKENS_ENUM);
+      spyOnPrivate(ErrorService, 'logError').and.returnValue(true);
+      instance.setLanguage('asdf' as LANGUAGE_TOKENS_ENUM);
       expect(instance['languageToken']).toBe(instance.defaultLanguage);
     });
 
     it('should log an error if language is not available', () => {
       spyOnPrivate(instance, 'languageAvailable').and.returnValue(false);
-      spyOnPrivate(instance, 'logError').and.returnValue(true);
-      instance.setLanguage('asdf' as TRANSLATION_TOKENS_ENUM);
-      expect(instance['logError']).toHaveBeenCalled();
+      spyOnPrivate(ErrorService, 'logError').and.returnValue(true);
+      instance.setLanguage('asdf' as LANGUAGE_TOKENS_ENUM);
+      expect(ErrorService['logError']).toHaveBeenCalled();
     });
 
     it('should set the language if its available', () => {
       spyOnPrivate(instance, 'languageAvailable').and.returnValue(true);
-      spyOnPrivate(instance, 'logError').and.returnValue(true);
-      const mockToken = 'asdf';
-      instance.setLanguage(mockToken as TRANSLATION_TOKENS_ENUM);
+      spyOnPrivate(ErrorService, 'logError').and.returnValue(true);
+      const mockToken = 'TOKEN';
+      instance.setLanguage(mockToken as LANGUAGE_TOKENS_ENUM);
       expect(instance['languageToken']).toBe(mockToken);
     });
   });
 
-  describe('#loadLocaleIntoMemory', () => {
-    it('should delegate to LocaleLoaderService', () => {
-      spyOn(instance['localeLoaderService'], 'loadFile').and.returnValue(true);
-      instance['loadLocaleIntoMemory']();
-      expect(instance['localeLoaderService'].loadFile).toHaveBeenCalled();
+  describe('#configValidation', () => {
+    it('should throw an error for undefined configs', () => {
+      spyOnPrivate(instance, 'configValidation');
+      instance['configValidation']((undefined as any) as DoggoTranslatorConfig);
+      expect(ErrorService.throw).toThrow();
     });
 
-    it('should switch on TRANSLATION_TOKENS_ENUM', () => {
-      spyOn(instance['localeLoaderService'], 'loadFile').and.returnValue(true);
-      instance['languageToken'] = TRANSLATION_TOKENS_ENUM.english;
-      instance['loadLocaleIntoMemory']();
-      expect(instance['localeLoaderService'].loadFile).toHaveBeenCalledWith(
-        `${TRANSLATION_TOKENS_ENUM.english}.json`
+    it('should throw an error for invalid configs', () => {
+      spyOnPrivate(instance, 'configValidation');
+      instance['configValidation']({ languageToken: undefined, userTranslationsMap: undefined });
+      expect(ErrorService.throw).toThrow();
+    });
+  });
+
+  describe('#setUpTranslator', () => {
+    it('should use default language', () => {
+      spyOn(instance, 'setLanguage').and.returnValue(true);
+      const mockConfig: DoggoTranslatorConfig = { languageToken: 'test' as LANGUAGE_TOKENS_ENUM };
+      instance['setUpTranslator'](mockConfig);
+      expect(instance.setLanguage).toHaveBeenCalledWith(mockConfig.languageToken);
+    });
+
+    it('should allow user defined translation maps', () => {
+      spyOn(instance, 'setLanguage').and.returnValue(true);
+      spyOnPrivate(instance['localeLoaderService'], 'setTranslationsMap').and.returnValue(true);
+      const mockConfig: DoggoTranslatorConfig = { userTranslationsMap: { test: 'true' } };
+      instance['setUpTranslator'](mockConfig);
+      expect(instance.setLanguage).toHaveBeenCalledWith(LANGUAGE_TOKENS_ENUM.userDefined);
+      expect(instance['localeLoaderService'].setTranslationsMap).toHaveBeenCalledWith(
+        mockConfig.userTranslationsMap
       );
     });
   });
@@ -114,7 +139,7 @@ describe('DoggoTranslator', () => {
   describe('#languageAvailable', () => {
     it('should delegate to TokensService', () => {
       spyOn(TokensService, 'languageAvailable').and.returnValue(true);
-      instance['languageAvailable'](TRANSLATION_TOKENS_ENUM.english);
+      instance['languageAvailable'](LANGUAGE_TOKENS_ENUM.english);
       expect(TokensService.languageAvailable).toHaveBeenCalled();
     });
   });
@@ -168,21 +193,11 @@ describe('DoggoTranslator', () => {
       expect(testEval).toBe('\\-\\[\\]\\{\\}\\(\\)\\*\\+\\?\\.\\,\\^\\$\\|\\#');
     });
   });
-
-  describe('#logError', () => {
-    // tslint:disable
-    it('should prepend our error signature', () => {
-      const mockInput = 'testing';
-      spyOn(console, 'error').and.returnValue(true);
-      instance['logError'](mockInput);
-      expect(console.error).toHaveBeenCalledWith(new Error('[DoggoTranslatorTS] testing'));
-    });
-    // tslint:enable
-  });
 });
 
 function getDefaultInstance(): DoggoTranslator {
-  return new DoggoTranslator(TRANSLATION_TOKENS_ENUM.english);
+  const config: DoggoTranslatorConfig = { languageToken: LANGUAGE_TOKENS_ENUM.english };
+  return new DoggoTranslator(config);
 }
 
 function spyOnPrivate(target: any, thing: any): jasmine.Spy {
