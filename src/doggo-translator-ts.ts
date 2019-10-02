@@ -1,7 +1,8 @@
 import { TranslatorWithDefaultResponse } from './models/translator-with-default-response.model';
-import { TRANSLATION_TOKENS_ENUM } from './enums/translation-tokens.enum';
+import { TRANSLATION_TOKENS_ENUM } from './i18n/tokens/translation-tokens.enum';
 import { TranslatorWithDefaultLanguage } from './models/translator-with-default-language.model';
-import * as EN_TRANSLATIONS from './i18n/translations/en.json';
+import { TokensService } from './i18n';
+import { LocaleLoaderService } from './i18n/locale-loader.service';
 
 // Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
 // import "core-js/fn/array.find"
@@ -10,11 +11,12 @@ import * as EN_TRANSLATIONS from './i18n/translations/en.json';
 /**
  * Given a language.json object, returns an instance of `DoggoTranslator`.
  */
-export default class DoggoTranslator
+export class DoggoTranslator
   implements TranslatorWithDefaultResponse, TranslatorWithDefaultLanguage {
   readonly defaultResponse = 'Bork';
   readonly defaultLanguage = TRANSLATION_TOKENS_ENUM.english;
-  private language!: string;
+  private languageToken!: string;
+  private localeLoaderService = new LocaleLoaderService();
 
   constructor(languageToken: TRANSLATION_TOKENS_ENUM) {
     this.setLanguage(languageToken);
@@ -25,12 +27,12 @@ export default class DoggoTranslator
    * @param sourceSentence Sentence in the sourceLanguage
    * @param reverse boolean to control direction of translation (e.g. true = sourceLanguage => doggo, false = doggo => sourceLanguage)
    */
-  translateSentence(sourceSentence: string, reverse: boolean): string {
+  translateSentence(sourceSentence: string, reverse = false): string {
     if (sourceSentence === '') {
       return this.defaultResponse;
     }
 
-    const languageFile: { [key: string]: any } = this.getLanguageFile();
+    const languageFile: { [key: string]: any } = this.loadLocaleIntoMemory();
 
     for (const key in languageFile) {
       if (languageFile.hasOwnProperty(key)) {
@@ -50,38 +52,31 @@ export default class DoggoTranslator
   /**
    * Returns available languages.
    */
-  getLanguages(): string[] {
-    const languageOptions: string[] = [];
-    for (const language in TRANSLATION_TOKENS_ENUM) {
-      if (language) {
-        languageOptions.push(language);
-      }
-    }
-    return languageOptions;
+  getAllLanguageTokens(): string[] {
+    return TokensService.getAllLanguageTokens();
   }
 
   /**
    * Given a language token, will attempt to set the current language.
-   * @param language the language token
+   * @param languageToken the language token
    */
-  setLanguage(language: TRANSLATION_TOKENS_ENUM): void {
-    if (this.languageAvailable(language)) {
-      this.language = language;
-    } else {
+  setLanguage(languageToken: TRANSLATION_TOKENS_ENUM): TRANSLATION_TOKENS_ENUM {
+    if (!this.languageAvailable(languageToken)) {
       this.logError(`The language was not found, defaulting to ${this.defaultLanguage}`);
-      this.language = this.defaultLanguage;
+      return (this.languageToken = this.defaultLanguage);
     }
+    return (this.languageToken = languageToken);
   }
 
   /**
    * Gets the language file for the current language token.
    */
-  private getLanguageFile() {
-    switch (this.language) {
-      case 'en':
-        return EN_TRANSLATIONS;
+  private loadLocaleIntoMemory() {
+    switch (this.languageToken) {
+      case TRANSLATION_TOKENS_ENUM.english:
+        return this.localeLoaderService.loadFile(`${this.languageToken}.json`);
       default:
-        return EN_TRANSLATIONS;
+        return this.localeLoaderService.loadFile(`${this.defaultLanguage}.json`);
     }
   }
 
@@ -89,8 +84,8 @@ export default class DoggoTranslator
    * Given a language token, will return whether the language is available.
    * @param language language token
    */
-  private languageAvailable(language: string): boolean {
-    return this.getLanguages().indexOf(language) !== -1;
+  private languageAvailable(languageToken: TRANSLATION_TOKENS_ENUM): boolean {
+    return TokensService.languageAvailable(languageToken);
   }
 
   /**
@@ -99,10 +94,10 @@ export default class DoggoTranslator
    * @param find The word or sentence to find
    * @param replace The word or sentence to replace the found word or sentence
    */
-  private translateSingleEntry(input: string, find: string, replace: string): string {
-    find = this.escapeRegex(find);
+  private translateSingleEntry(input: string, regex: string, replace: string): string {
+    regex = this.escapeRegex(regex);
 
-    return input.replace(new RegExp('\\b(' + find + ')\\b', 'gi'), match => {
+    return input.replace(new RegExp('\\b(' + regex + ')\\b', 'gi'), match => {
       if (match === match.toUpperCase()) {
         return replace.toUpperCase();
       }
@@ -120,7 +115,9 @@ export default class DoggoTranslator
    * @param target The string to format
    */
   private capitalizeFirstCharacter(target: string): string {
-    return target.charAt(0).toUpperCase() + target.slice(1);
+    const firstCharacterCapitalized = target.charAt(0).toUpperCase();
+    const restOfTheWord = target.slice(1);
+    return `${firstCharacterCapitalized}${restOfTheWord}`;
   }
 
   /**
@@ -137,7 +134,7 @@ export default class DoggoTranslator
    * @param message Message to log
    */
   private logError(message: string) {
-    const error = new Error('[DoggoTranslator]' + message);
+    const error = new Error(`[DoggoTranslatorTS] ${message}`);
     console.error(error); //tslint:disable-line
   }
 }
