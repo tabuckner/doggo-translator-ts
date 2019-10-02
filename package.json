@@ -80,11 +80,10 @@
       }
     },
     "collectCoverageFrom": [
-      "src/*.{js,ts}"
+      "src/**/*.{js,ts}"
     ]
   },
   "prettier": {
-    "semi": false,
     "singleQuote": true
   },
   "commitlint": {

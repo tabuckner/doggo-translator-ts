@@ -4,6 +4,10 @@
     "tslint-config-prettier"
   ],
   "rules": {
-    "member-access": false
+    "interface-name": false,
+    "member-access": false,
+    "no-string-literal": false,
+    "ordered-imports": false,
+    "semicolon": true
   }
 }
