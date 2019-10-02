@@ -1,6 +1,6 @@
-import { DoggoTranslator, TRANSLATION_TOKENS_ENUM } from '../src/index';
-import { TokensService } from '../src/i18n';
-import { LocaleLoaderService } from '../src/i18n/locale-loader.service';
+import { DoggoTranslator, TRANSLATION_TOKENS_ENUM } from './index';
+import { TokensService } from './i18n';
+import { LocaleLoaderService } from './i18n/locale-loader.service';
 /**
  * DoggoTranslator
  */
