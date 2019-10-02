@@ -4,18 +4,26 @@
     "declaration": true,
     "declarationDir": "dist/types",
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "lib": ["es2015", "es2016", "es2017", "dom"],
-    "module":"es2015",
+    "lib": [
+      "es2015",
+      "es2016",
+      "es2017",
+      "dom"
+    ],
+    "module": "es2015",
     "moduleResolution": "node",
     "outDir": "dist/lib",
-    "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "target": "es5",
-    "typeRoots": [      "node_modules/@types"    ]
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
-    "src"
+    "src",
+    "./package.json"
   ]
 }
