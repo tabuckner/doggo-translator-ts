@@ -1,8 +1,8 @@
-import { TranslatorWithDefaultResponse } from './models/translator-with-default-response.model';
-import { TRANSLATION_TOKENS_ENUM } from './i18n/tokens/translation-tokens.enum';
-import { TranslatorWithDefaultLanguage } from './models/translator-with-default-language.model';
-import { TokensService } from './i18n';
-import { LocaleLoaderService } from './i18n/locale-loader.service';
+import { TranslatorWithDefaultResponse } from '../models/translator-with-default-response.model';
+import { TRANSLATION_TOKENS_ENUM } from '../i18n/tokens/translation-tokens.enum';
+import { TranslatorWithDefaultLanguage } from '../models/translator-with-default-language.model';
+import { TokensService } from '../i18n';
+import { LocaleLoaderService } from '../i18n/locale-loader.service';
 
 // Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
 // import "core-js/fn/array.find"
