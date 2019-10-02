@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { resolve, join } from 'path';
 
 export class LocaleLoaderService {
-  private readonly libraryLocaleDirectory = resolve(__dirname, './locales');
+  private readonly libraryLocaleDirectory = resolve(__dirname, './lib/i18n/locales');
 
   public loadFile(filePath: string, userDefined = false): JSON {
     if (!userDefined) {
