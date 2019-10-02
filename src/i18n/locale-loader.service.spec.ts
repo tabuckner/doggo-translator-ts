@@ -1,4 +1,4 @@
-import { LocaleLoaderService } from '../src/i18n/locale-loader.service';
+import { LocaleLoaderService } from './locale-loader.service';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -18,7 +18,7 @@ describe('LocaleLoaderService', () => {
       const mockFilePath = './test-file.json';
       instance['loadFile'](mockFilePath);
       expect(fs.readFileSync).toHaveBeenCalledWith(
-        `${path.resolve(__dirname, '../src/i18n/locales', mockFilePath)}`,
+        `${path.resolve(__dirname, './locales', mockFilePath)}`,
         { encoding: 'utf8' }
       );
     });

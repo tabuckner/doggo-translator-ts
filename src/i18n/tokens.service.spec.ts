@@ -1,4 +1,4 @@
-import { TokensService, TRANSLATION_TOKENS_ENUM } from '../src/i18n';
+import { TokensService, TRANSLATION_TOKENS_ENUM } from '.';
 
 /**
  * TokensService
