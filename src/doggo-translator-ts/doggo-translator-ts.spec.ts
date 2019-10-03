@@ -2,6 +2,7 @@ import { DoggoTranslator, LANGUAGE_TOKENS_ENUM } from '../index';
 import { TokensService } from '../i18n';
 import { ErrorService } from '../util/error.service';
 import { DoggoTranslatorConfig } from './doggo-translator-config.interface';
+import { TranslationMapInterface } from '../i18n/models/translation.model';
 
 /**
  * DoggoTranslator
@@ -37,35 +38,36 @@ describe('DoggoTranslator', () => {
       expect(instance['localeLoaderService'].getTranslationsMap).toHaveBeenCalled();
     });
 
-    it('should be able to translate english => doggo', () => {
-      const mockLanguageFile = { barking: 'borking' };
+    it('should delegate to whole words method', () => {
+      const mockLanguageFile: TranslationMapInterface = { words: { barking: 'borking' } };
       spyOnPrivate(instance['localeLoaderService'], 'getTranslationsMap').and.returnValue(
         mockLanguageFile
       );
-      spyOnPrivate(instance, 'translateSingleEntry').and.returnValue(true);
-      const mockLanguageKey = Object.keys(mockLanguageFile)[0];
-      const input = mockLanguageKey;
-      instance.translateSentence(input);
-      expect(instance['translateSingleEntry']).toHaveBeenCalledWith(
-        input,
-        mockLanguageKey,
-        mockLanguageFile.barking
+      spyOnPrivate(instance, 'replaceWholeWords').and.returnValue(true);
+      const mockInput = 'testing sentence';
+      instance.translateSentence(mockInput, true);
+      expect(instance['replaceWholeWords']).toHaveBeenCalledWith(
+        mockLanguageFile.words,
+        true,
+        mockInput
       );
     });
 
-    it('should be able to translate english => doggo', () => {
-      const mockLanguageFile = { barking: 'borking' };
+    it('should delegate to suffixes method', () => {
+      const mockLanguageFile: TranslationMapInterface = {
+        words: { barking: 'borking' },
+        suffixes: { ing: 'in' }
+      };
       spyOnPrivate(instance['localeLoaderService'], 'getTranslationsMap').and.returnValue(
         mockLanguageFile
       );
-      spyOnPrivate(instance, 'translateSingleEntry').and.returnValue(true);
-      const mockLanguageKey = Object.keys(mockLanguageFile)[0];
-      const input = mockLanguageKey;
-      instance.translateSentence(input, true);
-      expect(instance['translateSingleEntry']).toHaveBeenCalledWith(
-        input,
-        mockLanguageFile.barking,
-        mockLanguageKey
+      spyOnPrivate(instance, 'replaceSuffixes').and.returnValue(true);
+      const mockInput = 'testing sentence';
+      instance.translateSentence(mockInput, true);
+      expect(instance['replaceSuffixes']).toHaveBeenCalledWith(
+        mockLanguageFile.suffixes,
+        true,
+        mockInput
       );
     });
   });
@@ -127,7 +129,9 @@ describe('DoggoTranslator', () => {
     it('should allow user defined translation maps', () => {
       spyOn(instance, 'setLanguage').and.returnValue(true);
       spyOnPrivate(instance['localeLoaderService'], 'setTranslationsMap').and.returnValue(true);
-      const mockConfig: DoggoTranslatorConfig = { userTranslationsMap: { test: 'true' } };
+      const mockConfig: DoggoTranslatorConfig = {
+        userTranslationsMap: { words: { test: 'true' } }
+      };
       instance['setUpTranslator'](mockConfig);
       expect(instance.setLanguage).toHaveBeenCalledWith(LANGUAGE_TOKENS_ENUM.userDefined);
       expect(instance['localeLoaderService'].setTranslationsMap).toHaveBeenCalledWith(
@@ -144,26 +148,82 @@ describe('DoggoTranslator', () => {
     });
   });
 
-  describe('#translateSingleEntry', () => {
+  describe('#replaceWholeWords', () => {
+    const mockLanguageFile: TranslationMapInterface = { words: { barking: 'borking' } };
+    const mockLanguageKey = Object.keys(mockLanguageFile.words)[0];
+    const input = mockLanguageKey;
+
+    beforeEach(() => {
+      spyOnPrivate(instance, 'translateWholeWord').and.returnValue(true);
+    });
+
+    it('should delegate whole words from english => doggo to #translateWholeWord', () => {
+      instance['replaceWholeWords'](mockLanguageFile.words, false, input);
+      expect(instance['translateWholeWord']).toHaveBeenCalledWith(
+        input,
+        mockLanguageKey,
+        mockLanguageFile.words.barking
+      );
+    });
+
+    it('should delegate whole words from doggo => english to #translateWholeWord', () => {
+      instance['replaceWholeWords'](mockLanguageFile.words, true, input);
+      expect(instance['translateWholeWord']).toHaveBeenCalledWith(
+        input,
+        mockLanguageFile.words.barking,
+        mockLanguageKey
+      );
+    });
+  });
+
+  describe('#replaceSuffixes', () => {
+    const mockSuffixes = { ing: 'in' };
+    const mockLanguageKey = Object.keys(mockSuffixes)[0];
+    const input = mockLanguageKey;
+
+    beforeEach(() => {
+      spyOnPrivate(instance, 'transformSuffixes').and.returnValue(true);
+    });
+
+    it('should delegate whole words from english => doggo to #transformSuffixes', () => {
+      instance['replaceSuffixes'](mockSuffixes, false, input);
+      expect(instance['transformSuffixes']).toHaveBeenCalledWith(
+        input,
+        mockLanguageKey,
+        mockSuffixes.ing
+      );
+    });
+
+    it('should delegate whole words from doggo => english to #transformSuffixes', () => {
+      instance['replaceSuffixes'](mockSuffixes, true, input);
+      expect(instance['transformSuffixes']).toHaveBeenCalledWith(
+        input,
+        mockSuffixes.ing,
+        mockLanguageKey
+      );
+    });
+  });
+
+  describe('#translateWholeWord', () => {
     const mockInput = 'testing string test';
     const mockRegex = 'string';
     const mockReplacement = 'test';
 
     it('should escape input regex', () => {
       spyOnPrivate(instance, 'escapeRegex').and.returnValue(true);
-      instance['translateSingleEntry'](mockInput, mockRegex, mockReplacement);
+      instance['translateWholeWord'](mockInput, mockRegex, mockReplacement);
       expect(instance['escapeRegex']).toHaveBeenCalled();
     });
 
     it('should use string.replace', () => {
       spyOn(String.prototype, 'replace').and.callThrough();
-      instance['translateSingleEntry'](mockInput, mockRegex, mockReplacement);
+      instance['translateWholeWord'](mockInput, mockRegex, mockReplacement);
       expect(mockInput.replace).toHaveBeenCalled();
     });
 
     it('should handle all caps', () => {
       spyOn(String.prototype, 'replace').and.callThrough();
-      const testEval = instance['translateSingleEntry'](
+      const testEval = instance['translateWholeWord'](
         mockInput.toUpperCase(),
         mockRegex,
         mockReplacement
@@ -173,8 +233,41 @@ describe('DoggoTranslator', () => {
 
     it('should handle capitalized words', () => {
       const localMockInput = 'Testing';
-      const testEval = instance['translateSingleEntry'](localMockInput, 'testing', mockReplacement);
+      const testEval = instance['translateWholeWord'](localMockInput, 'testing', mockReplacement);
       expect(testEval).toBe('Test');
+    });
+  });
+
+  describe('#transformSuffixes', () => {
+    const mockInput = 'Running Jumping and Swimming.';
+    const mockRegex = 'ing';
+    const mockReplacement = 'in';
+
+    it('should escape input regex', () => {
+      spyOnPrivate(instance, 'escapeRegex').and.returnValue(true);
+      instance['transformSuffixes'](mockInput, mockRegex, mockReplacement);
+      expect(instance['escapeRegex']).toHaveBeenCalled();
+    });
+
+    it('should use string.replace', () => {
+      spyOn(String.prototype, 'replace').and.callThrough();
+      instance['transformSuffixes'](mockInput, mockRegex, mockReplacement);
+      expect(mockInput.replace).toHaveBeenCalled();
+    });
+
+    it('should handle all caps', () => {
+      spyOn(String.prototype, 'replace').and.callThrough();
+      const testEval = instance['transformSuffixes'](
+        mockInput.toUpperCase(),
+        mockRegex,
+        mockReplacement
+      );
+      expect(testEval).toBe(testEval.toUpperCase());
+    });
+
+    it('should replace suffixes of words in place', () => {
+      const testEval = instance['transformSuffixes'](mockInput, mockRegex, mockReplacement);
+      expect(testEval).toBe('Runnin Jumpin and Swimmin.');
     });
   });
 

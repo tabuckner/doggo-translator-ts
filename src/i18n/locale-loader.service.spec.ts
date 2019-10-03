@@ -1,7 +1,8 @@
 import { LocaleLoaderService } from './locale-loader.service';
 import { LANGUAGE_TOKENS_ENUM } from './tokens/translation-tokens.enum';
-import { EN_TRANSLATIONS } from './locales/en';
+import { EN_TRANSLATIONS } from './locales/en/en';
 import { ErrorService } from '../util/error.service';
+import { TranslationMapInterface } from './models/translation.model';
 
 describe('LocaleLoaderService', () => {
   const instance = new LocaleLoaderService();
@@ -29,13 +30,13 @@ describe('LocaleLoaderService', () => {
   describe('#getTranslationsMap', () => {
     it('should error for empty maps', () => {
       spyOn(ErrorService, 'logError').and.returnValue(true);
-      instance.setTranslationsMap({});
+      instance.setTranslationsMap({} as TranslationMapInterface);
       instance.getTranslationsMap();
       expect(ErrorService.logError).toHaveBeenCalled();
     });
 
     it('should return current map', () => {
-      const mockMap = { test: 'true' };
+      const mockMap: TranslationMapInterface = { words: { test: 'true' } };
       instance.setTranslationsMap(mockMap);
       const testEval = instance.getTranslationsMap();
       expect(testEval).toBe(mockMap);

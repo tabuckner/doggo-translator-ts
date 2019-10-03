@@ -1,3 +1,3 @@
 export interface TranslatorWithDefaultResponse {
-  readonly defaultResponse: string
+  readonly defaultResponse: string;
 }

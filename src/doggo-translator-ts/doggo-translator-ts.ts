@@ -5,10 +5,10 @@ import { TokensService } from '../i18n';
 import { LocaleLoaderService } from '../i18n/locale-loader.service';
 import { ErrorService } from '../util/error.service';
 import { DoggoTranslatorConfig } from './doggo-translator-config.interface';
+import { TranslationMapInterface } from '../i18n/models/translation.model';
 
 // Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
 // import "core-js/fn/array.find"
-// ...
 
 /**
  * Given a language.json object, returns an instance of `DoggoTranslator`.
@@ -35,18 +35,14 @@ export class DoggoTranslator
       return this.defaultResponse;
     }
 
-    const languageFile: { [key: string]: any } = this.localeLoaderService.getTranslationsMap();
+    const translationsMap: TranslationMapInterface = this.localeLoaderService.getTranslationsMap();
+    const words = translationsMap.words;
+    const suffixes = translationsMap.suffixes;
 
-    for (const key in languageFile) {
-      if (languageFile.hasOwnProperty(key)) {
-        const value = languageFile[key];
+    sourceSentence = this.replaceWholeWords(words, reverse, sourceSentence);
 
-        if (!reverse) {
-          sourceSentence = this.translateSingleEntry(sourceSentence, key, value);
-        } else {
-          sourceSentence = this.translateSingleEntry(sourceSentence, value, key);
-        }
-      }
+    if (suffixes) {
+      sourceSentence = this.replaceSuffixes(suffixes, reverse, sourceSentence);
     }
 
     return sourceSentence;
@@ -90,23 +86,47 @@ export class DoggoTranslator
   }
 
   /**
-   * Gets the language file for the current language token.
-   */
-  // private loadLocaleIntoMemory() {
-  //   switch (this.languageToken) {
-  //     case LANGUAGE_TOKENS_ENUM.english:
-  //       return this.localeLoaderService.loadFile(`${this.languageToken}.json`);
-  //     default:
-  //       return this.localeLoaderService.loadFile(`${this.defaultLanguage}.json`);
-  //   }
-  // }
-
-  /**
    * Given a language token, will return whether the language is available.
    * @param language language token
    */
   private languageAvailable(languageToken: LANGUAGE_TOKENS_ENUM): boolean {
     return TokensService.languageAvailable(languageToken);
+  }
+
+  private replaceWholeWords(
+    words: { [key: string]: string },
+    reverse: boolean,
+    sourceSentence: string
+  ) {
+    for (const key in words) {
+      if (words.hasOwnProperty(key)) {
+        const value = words[key];
+        if (!reverse) {
+          sourceSentence = this.translateWholeWord(sourceSentence, key, value);
+        } else {
+          sourceSentence = this.translateWholeWord(sourceSentence, value, key);
+        }
+      }
+    }
+    return sourceSentence;
+  }
+
+  private replaceSuffixes(
+    suffixes: { [key: string]: string },
+    reverse: boolean,
+    sourceSentence: string
+  ) {
+    for (const key in suffixes) {
+      if (suffixes.hasOwnProperty(key)) {
+        const value = suffixes[key];
+        if (!reverse) {
+          sourceSentence = this.transformSuffixes(sourceSentence, key, value);
+        } else {
+          sourceSentence = this.transformSuffixes(sourceSentence, value, key);
+        }
+      }
+    }
+    return sourceSentence;
   }
 
   /**
@@ -115,10 +135,10 @@ export class DoggoTranslator
    * @param find The word or sentence to find
    * @param replace The word or sentence to replace the found word or sentence
    */
-  private translateSingleEntry(input: string, regex: string, replace: string): string {
+  private translateWholeWord(input: string, regex: string, replace: string): string {
     regex = this.escapeRegex(regex);
 
-    return input.replace(new RegExp('\\b(' + regex + ')\\b', 'gi'), match => {
+    return input.replace(new RegExp('\\b(' + regex + ')\\b', 'gi'), (match: string) => {
       if (match === match.toUpperCase()) {
         return replace.toUpperCase();
       }
@@ -127,6 +147,19 @@ export class DoggoTranslator
         return this.capitalizeFirstCharacter(replace);
       }
 
+      return replace;
+    });
+  }
+
+  private transformSuffixes(input: string, regex: string, replace: string): string {
+    regex = this.escapeRegex(regex);
+
+    return input.replace(new RegExp('(' + regex + ')\\b', 'gi'), (match: string) => {
+      if (match === match.toUpperCase()) {
+        return replace.toUpperCase();
+      }
+
+      // TODO: Add support for respecting character capitalization.
       return replace;
     });
   }
