@@ -960,12 +960,8 @@ img { max-width: 100%; }
 			<a href="https://paypal.me/tabuckner"><img src="https://img.shields.io/badge/donate-paypal-blue.svg" alt="Donate"></a></p>
 			<p>A TypeScript library for translating words to &#39;Doggo&#39; speak!</p>
 			<h3 id="usage">Usage</h3>
-			<p>You can use the library defaults by creating an instance of the <code>DoggoTranslatorTs</code> object, and using it&#39;s publicly available methods. <a href="./examples/node/index.js">Read More</a></p>
-			<p>Optionally you can pass in a <code>DoggoTranslatorConfig</code> object to configure the instance when created.</p>
-			<h4 id="browser">Browser</h4>
-			<p>To use in Browser, check out the <a href="./examples/browser/index.html">this example</a></p>
-			<h4 id="node">Node</h4>
-			<p>To use in Node, check out the <a href="./examples/node/index.js">this example</a></p>
+			<p>You can use the library defaults by creating an instance of the <a href="https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html">DoggoTranslator</a> class, and using it&#39;s publicly available methods. <a href="./examples/node/index.js">Read More</a></p>
+			<p>Optionally you can pass in a <a href="https://tabuckner.github.io/doggo-translator-ts/interfaces/doggotranslatorconfig.html">DoggoTranslatorConfig</a> object to configure the instance when created.</p>
 			<h4 id="basic-use-case">Basic Use Case</h4>
 			<pre><code class="language-javascript"><span class="hljs-keyword">const</span> library = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../dist/doggo-translator-ts.umd'</span>);
 <span class="hljs-keyword">const</span> DoggoTranslator = library.DoggoTranslator;
@@ -991,6 +987,10 @@ img { max-width: 100%; }
 <span class="hljs-keyword">const</span> text = <span class="hljs-string">'Hey Friend! Do you want to go run around? I love running!'</span>;
 <span class="hljs-keyword">const</span> translated = myTranslator.translateSentence(text)
 <span class="hljs-built_in">console</span>.warn(translated); <span class="hljs-comment">// Hi frenn! Do you want to go floop around? I love runnin.</span></code></pre>
+			<h4 id="browser">Browser</h4>
+			<p>To use in Browser, check out the <a href="./examples/browser/index.html">this example</a></p>
+			<h4 id="node">Node</h4>
+			<p>To use in Node, check out the <a href="./examples/node/index.js">this example</a></p>
 			<h3 id="features">Features</h3>
 			<h4 id="user-supplied-translation-definitions">User Supplied Translation Definitions</h4>
 			<p>You can pass a <code>TranslationMapInterface</code> compliant object to the <code>DoggoTranslatorConfig</code> when instantiating to supply new translations on the fly.</p>
@@ -1003,6 +1003,11 @@ img { max-width: 100%; }
 			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> myLib <span class="hljs-keyword">from</span> <span class="hljs-string">'mylib'</span></code></pre>
 			<p>Additionally, you can import the transpiled modules from <code>dist/lib</code> in case you have a modular library:</p>
 			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> something <span class="hljs-keyword">from</span> <span class="hljs-string">'mylib/dist/lib/something'</span></code></pre>
+			<h3 id="public-api">Public API</h3>
+			<p><a href="https://tabuckner.github.io/doggo-translator-ts/">TypeDoc Documentation</a></p>
+			<p><a href="https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html#translatesentence">translateSentence</a></p>
+			<p><a href="https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html#getalllanguagetokens">getAllLanguageTokens</a></p>
+			<p><a href="https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html#setlanguage">setLanguage</a></p>
 			<!-- ### Excluding peerDependencies
 
 On library development, one might want to set some peer dependencies, and thus remove those from the final bundle. You can see in [Rollup docs](https://rollupjs.org/#peer-dependencies) how to do that.
@@ -1127,7 +1132,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 				<div class="tsd-signature tsd-kind-icon">EN_<wbr>TRANSLATIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en.ts#L5">i18n/locales/en/en.ts:5</a></li>
+						<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en.ts#L5">i18n/locales/en/en.ts:5</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1136,7 +1141,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">suffixes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;EN_TRANSLATION_SUFFIXES</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en.ts#L7">i18n/locales/en/en.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en.ts#L7">i18n/locales/en/en.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -1154,7 +1159,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">words<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;EN_TRANSLATION_WORDS</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en.ts#L6">i18n/locales/en/en.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en.ts#L6">i18n/locales/en/en.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -1173,7 +1178,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 				<div class="tsd-signature tsd-kind-icon">EN_<wbr>TRANSLATION_<wbr>SUFFIXES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-suffixes.ts#L1">i18n/locales/en/en-suffixes.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-suffixes.ts#L1">i18n/locales/en/en-suffixes.ts:1</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1182,7 +1187,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">ing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;in&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-suffixes.ts#L2">i18n/locales/en/en-suffixes.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-suffixes.ts#L2">i18n/locales/en/en-suffixes.ts:2</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1193,7 +1198,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 				<div class="tsd-signature tsd-kind-icon">EN_<wbr>TRANSLATION_<wbr>WORDS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L1">i18n/locales/en/en-words.ts:1</a></li>
+						<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L1">i18n/locales/en/en-words.ts:1</a></li>
 					</ul>
 				</aside>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -1202,7 +1207,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">bar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;bork&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L2">i18n/locales/en/en-words.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L2">i18n/locales/en/en-words.ts:2</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1212,7 +1217,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">barkin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;borking&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L3">i18n/locales/en/en-words.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L3">i18n/locales/en/en-words.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1222,7 +1227,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">beave<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;bevver&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L4">i18n/locales/en/en-words.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L4">i18n/locales/en/en-words.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1232,7 +1237,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">beaver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;bevvers&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L5">i18n/locales/en/en-words.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L5">i18n/locales/en/en-words.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1242,7 +1247,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">big doggo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;woofer&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L6">i18n/locales/en/en-words.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L6">i18n/locales/en/en-words.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1252,7 +1257,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">big doggos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;woofers&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L7">i18n/locales/en/en-words.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L7">i18n/locales/en/en-words.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1262,7 +1267,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">big ol doggo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;woofer&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L8">i18n/locales/en/en-words.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L8">i18n/locales/en/en-words.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1272,7 +1277,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">big ol doggos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;woofers&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L9">i18n/locales/en/en-words.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L9">i18n/locales/en/en-words.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1282,7 +1287,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">bo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;boye&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L10">i18n/locales/en/en-words.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L10">i18n/locales/en/en-words.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1292,7 +1297,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">boy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;boyes&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L11">i18n/locales/en/en-words.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L11">i18n/locales/en/en-words.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1302,7 +1307,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">corg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;corgo&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L12">i18n/locales/en/en-words.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L12">i18n/locales/en/en-words.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1312,7 +1317,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">corgi<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;corgos&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L13">i18n/locales/en/en-words.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L13">i18n/locales/en/en-words.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1322,7 +1327,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">do<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;doggo&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L14">i18n/locales/en/en-words.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L14">i18n/locales/en/en-words.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1332,7 +1337,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">dog<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;doggos&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L17">i18n/locales/en/en-words.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L17">i18n/locales/en/en-words.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1342,7 +1347,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">dogg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;doggo&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L16">i18n/locales/en/en-words.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L16">i18n/locales/en/en-words.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1352,7 +1357,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">doggie<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;doggos&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L15">i18n/locales/en/en-words.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L15">i18n/locales/en/en-words.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1362,7 +1367,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">fac<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;snoot&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L18">i18n/locales/en/en-words.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L18">i18n/locales/en/en-words.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1372,7 +1377,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">frien<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;fren&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L19">i18n/locales/en/en-words.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L19">i18n/locales/en/en-words.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1382,7 +1387,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">giv<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;gib&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L20">i18n/locales/en/en-words.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L20">i18n/locales/en/en-words.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1392,7 +1397,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">goo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;gud&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L21">i18n/locales/en/en-words.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L21">i18n/locales/en/en-words.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1402,7 +1407,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">hav<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;hav&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L22">i18n/locales/en/en-words.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L22">i18n/locales/en/en-words.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1412,7 +1417,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">hel<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;heck&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L23">i18n/locales/en/en-words.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L23">i18n/locales/en/en-words.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1422,7 +1427,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">hi<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;hims&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L25">i18n/locales/en/en-words.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L25">i18n/locales/en/en-words.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1432,7 +1437,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">hik<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;hik&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L24">i18n/locales/en/en-words.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L24">i18n/locales/en/en-words.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1442,7 +1447,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">huma<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;hooman&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L26">i18n/locales/en/en-words.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L26">i18n/locales/en/en-words.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1452,7 +1457,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">lic<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;mlem&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L27">i18n/locales/en/en-words.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L27">i18n/locales/en/en-words.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1462,7 +1467,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">lick<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;mlems&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L30">i18n/locales/en/en-words.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L30">i18n/locales/en/en-words.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1472,7 +1477,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">licke<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;mlemmed&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L28">i18n/locales/en/en-words.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L28">i18n/locales/en/en-words.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1482,7 +1487,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">lickin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;mlemming&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L29">i18n/locales/en/en-words.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L29">i18n/locales/en/en-words.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1492,7 +1497,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">lov<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;luv&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L31">i18n/locales/en/en-words.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L31">i18n/locales/en/en-words.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1502,7 +1507,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">nam<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;naym&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L32">i18n/locales/en/en-words.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L32">i18n/locales/en/en-words.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1512,7 +1517,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">neve<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;nvr&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L33">i18n/locales/en/en-words.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L33">i18n/locales/en/en-words.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1522,7 +1527,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">pu<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;puggo&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L34">i18n/locales/en/en-words.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L34">i18n/locales/en/en-words.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1532,7 +1537,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">pug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;puggos&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L35">i18n/locales/en/en-words.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L35">i18n/locales/en/en-words.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1542,7 +1547,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">pupp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;pupper&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L37">i18n/locales/en/en-words.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L37">i18n/locales/en/en-words.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1552,7 +1557,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">puppie<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;puppers&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L36">i18n/locales/en/en-words.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L36">i18n/locales/en/en-words.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1562,7 +1567,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">samoye<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;cloud boye&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L38">i18n/locales/en/en-words.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L38">i18n/locales/en/en-words.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1572,7 +1577,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">samoyed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;cloud boyes&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L39">i18n/locales/en/en-words.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L39">i18n/locales/en/en-words.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1582,7 +1587,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">sea<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;waterdoggo&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L40">i18n/locales/en/en-words.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L40">i18n/locales/en/en-words.ts:40</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1592,7 +1597,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">seal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;waterdoggos&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L41">i18n/locales/en/en-words.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L41">i18n/locales/en/en-words.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1602,7 +1607,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">shib<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;shibe&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L42">i18n/locales/en/en-words.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L42">i18n/locales/en/en-words.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1612,7 +1617,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">shiba<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;shibes&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L43">i18n/locales/en/en-words.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L43">i18n/locales/en/en-words.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1622,7 +1627,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;smol&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L44">i18n/locales/en/en-words.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L44">i18n/locales/en/en-words.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1632,7 +1637,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smol doggo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;pupper&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L45">i18n/locales/en/en-words.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L45">i18n/locales/en/en-words.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1642,7 +1647,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smol doggos<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;puppers&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L46">i18n/locales/en/en-words.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L46">i18n/locales/en/en-words.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1652,7 +1657,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smol pug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;puggorino&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L47">i18n/locales/en/en-words.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L47">i18n/locales/en/en-words.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1662,7 +1667,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smol pugs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;puggorinos&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L48">i18n/locales/en/en-words.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L48">i18n/locales/en/en-words.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1672,7 +1677,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smol pupper<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;pupperino&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L49">i18n/locales/en/en-words.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L49">i18n/locales/en/en-words.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1682,7 +1687,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smol puppers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;pupperinos&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L50">i18n/locales/en/en-words.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L50">i18n/locales/en/en-words.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1692,7 +1697,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smol woofer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;doggo&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L51">i18n/locales/en/en-words.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L51">i18n/locales/en/en-words.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1702,7 +1707,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">smol woofers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;doggos&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L52">i18n/locales/en/en-words.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L52">i18n/locales/en/en-words.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1712,7 +1717,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">touch<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;boop&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L53">i18n/locales/en/en-words.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L53">i18n/locales/en/en-words.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1722,7 +1727,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">touching<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;boopin&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L54">i18n/locales/en/en-words.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L54">i18n/locales/en/en-words.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1732,7 +1737,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">whe<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;wen&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L55">i18n/locales/en/en-words.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L55">i18n/locales/en/en-words.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1742,7 +1747,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">wit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;wit&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L56">i18n/locales/en/en-words.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L56">i18n/locales/en/en-words.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1752,7 +1757,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">you are frightening me<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;you are doing me a frighten&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L57">i18n/locales/en/en-words.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L57">i18n/locales/en/en-words.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1762,7 +1767,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">you are scaring me<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;you are doing me a scare&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L58">i18n/locales/en/en-words.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L58">i18n/locales/en/en-words.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -1772,7 +1777,7 @@ Remove `npm run report-coverage` from `.travis.yml` -->
 					<div class="tsd-signature tsd-kind-icon">you are startling me<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;you are doing me a startle&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/8bbe2d5/src/i18n/locales/en/en-words.ts#L59">i18n/locales/en/en-words.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/tabuckner/doggo-translator-ts/blob/974d1ec/src/i18n/locales/en/en-words.ts#L59">i18n/locales/en/en-words.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
