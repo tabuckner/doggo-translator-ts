@@ -10,15 +10,9 @@
 A TypeScript library for translating words to 'Doggo' speak!
 
 ### Usage
-You can use the library defaults by creating an instance of the `DoggoTranslatorTs` object, and using it's publicly available methods. [Read More](./examples/node/index.js)
+You can use the library defaults by creating an instance of the [DoggoTranslator](https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html) class, and using it's publicly available methods. [Read More](./examples/node/index.js)
 
-Optionally you can pass in a `DoggoTranslatorConfig` object to configure the instance when created.
-
-#### Browser
-To use in Browser, check out the [this example](./examples/browser/index.html)
-
-#### Node
-To use in Node, check out the [this example](./examples/node/index.js)
+Optionally you can pass in a [DoggoTranslatorConfig](https://tabuckner.github.io/doggo-translator-ts/interfaces/doggotranslatorconfig.html) object to configure the instance when created.
 
 #### Basic Use Case
 ```javascript
@@ -51,6 +45,13 @@ const translated = myTranslator.translateSentence(text)
 console.warn(translated); // Hi frenn! Do you want to go floop around? I love runnin.
 ```
 
+#### Browser
+To use in Browser, check out the [this example](./examples/browser/index.html)
+
+#### Node
+To use in Node, check out the [this example](./examples/node/index.js)
+
+
 ### Features
 #### User Supplied Translation Definitions
 You can pass a `TranslationMapInterface` compliant object to the `DoggoTranslatorConfig` when instantiating to supply new translations on the fly.
@@ -73,6 +74,15 @@ Additionally, you can import the transpiled modules from `dist/lib` in case you 
 ```typescript
 import something from 'mylib/dist/lib/something'
 ```
+
+### Public API
+[TypeDoc Documentation](https://tabuckner.github.io/doggo-translator-ts/)
+
+[translateSentence](https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html#translatesentence)
+
+[getAllLanguageTokens](https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html#getalllanguagetokens)
+
+[setLanguage](https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html#setlanguage)
 
 <!-- ### Excluding peerDependencies
 
