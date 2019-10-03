@@ -1,6 +1,6 @@
 {
   "name": "@tabuckner/doggo-translator-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A typescript doggo translator based on DoggoTranslatorCore",
   "keywords": [
     "doggo",
@@ -16,7 +16,7 @@
   ],
   "main": "dist/doggo-translator-ts.umd.js",
   "module": "dist/doggo-translator-ts.es5.js",
-  "typings": "dist/types/doggo-translator-ts.d.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
