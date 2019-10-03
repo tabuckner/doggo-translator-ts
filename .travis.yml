@@ -18,6 +18,8 @@ script:
   - yarn ci
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn build:docs; fi
+  - if [ "$TRAVIS_BRANCH" = "develop" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn build:docs; fi
 deploy:
   provider: pages
   skip_cleanup: true
