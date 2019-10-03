@@ -13,8 +13,8 @@
   <script src="../../dist/doggo-translator-ts.min.js"></script>
   <script>
 
-    const myTranslator = new DTT.DoggoTranslator({ userTranslationsMap: { hey: 'hi', friend: 'frenn', run: 'floop' } });
-    const text = 'Hey friend, do you want to go for a run?'
+    const myTranslator = new DTT.DoggoTranslator({ userTranslationsMap: { words: { hey: 'hi', friend: 'frenn', run: 'floop' } }, suffixes: { ing: 'in' } });
+    const text = 'Hey friend, do you want to go for a run? I like running too!'
     const translated = myTranslator.translateSentence(text)
     document.querySelector('#text').innerHTML = text;
     document.querySelector('#translated').innerHTML = translated;

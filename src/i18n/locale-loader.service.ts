@@ -1,11 +1,12 @@
 import { LANGUAGE_TOKENS_ENUM } from './tokens/translation-tokens.enum';
-import { EN_TRANSLATIONS } from './locales/en';
+import { EN_TRANSLATIONS } from './locales/en/en';
 import { ErrorService } from '../util/error.service';
+import { TranslationMapInterface } from './models/translation.model';
 
 export class LocaleLoaderService {
-  private translationsMap: { [key: string]: string } = {};
+  private translationsMap!: TranslationMapInterface;
 
-  public setTranslationsMap(newTranslationsMap: { [key: string]: string }) {
+  public setTranslationsMap(newTranslationsMap: TranslationMapInterface) {
     this.translationsMap = newTranslationsMap;
   }
 
@@ -18,7 +19,7 @@ export class LocaleLoaderService {
     }
   }
 
-  public getTranslationsMap(): { [key: string]: string } {
+  public getTranslationsMap(): TranslationMapInterface {
     if (!this.translationMapHasTranslations) {
       ErrorService.logError('No translations found in TranslationsMap.');
     }
