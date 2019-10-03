@@ -15,18 +15,26 @@ cache:
   directories:
   - node_modules
 script:
-  - yarn ci
+- yarn ci
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn build:docs; fi
-  - if [ "$TRAVIS_BRANCH" = "develop" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn build:docs; fi
-deploy:
+- bash <(curl -s https://codecov.io/bash)
+- if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn
+  build:docs; fi
+- if [ "$TRAVIS_BRANCH" = "develop" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn
+  build:docs; fi
+gh-pages:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  github_token: "$GITHUB_TOKEN"
   keep_history: true
   local_dir: docs
-  committer_from_gh: true # Token Owner authors commits.
+  committer_from_gh: true
   on:
-    branch: master
-    branch: develop # Risky...
+    branch: develop
+deploy:
+  provider: npm
+  email: taylora.buckner@gmail.com
+  api_key:
+    secure: inALQpHunuMMo6eboSoIOrCXl1gUeLE1VAxnrv58dmH5E75w6ra7aNrrEwjTtwkGJR2PlCWIZnhgr+TwAkYSS5OP+5s7shFx4yTGsYhISW22JX9+LOCS3SJ2zZMieCNqwtkQSTbCsEFRLVAV5NcdxnkZaKqAFWC+1jHtuRKYa9boO+uM4A2zJQj1G1n7F4Ph8+Xe5GGyof1tzDy5alWZ/9VKGxL41ohH17WZsINERmMHceAWX5fbUQ0N/rHVGf1HJwMNv2721fStefYQe7B4mdIzfCty3zp9cLqCydl2/z3nX6HqXHSKgGRr0U14zIgDrpIXofcMTxBYdO8CvUW8PoOsx1zn81S6UkGqH7khG/I8s+UTZAc3T13QLrBRUvpExuN8A94LhDifoIWGYwrQOFMcDn/GQqKPFeogFlCjjj9IiVRDpup2Z5BjpS/6l2yVcxh2T0NzTxUXXOdIyOJ9LlEip5M5vMFO3ZUPpb8O7HCGk7uQRjugn1qLnHhf3OjXKN/cJqWCzDYPiw1bJwaWEEypk8gaDFJFrFQhsAzXSvvBFlqonzQ4EMs/Qd0l+AbJmUxbPJsCVeOVJKws703jrQxKr2AoxUYZPU+kFLPnyZNDibdHaUeUxsjhDuxBIhWurUKu8gucU0l0pb/+jsusMhx8ykMgtA2ljDShbcT5uMc=
+  on:
+    branch: production
