@@ -137,5 +137,8 @@
   "bugs": {
     "url": "https://github.com/tabuckner/doggo-translator-ts/issues"
   },
-  "homepage": "https://github.com/tabuckner/doggo-translator-ts/"
+  "homepage": "https://github.com/tabuckner/doggo-translator-ts/",
+  "publishConfig": {
+    "access": "public"
+  }
 }
