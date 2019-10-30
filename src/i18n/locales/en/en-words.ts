@@ -27,8 +27,6 @@ export const EN_TRANSLATION_WORDS: { [key: string]: string } = {
   shibas: 'shibes',
   samoyed: 'cloud boye',
   samoyeds: 'cloud boyes',
-  beaver: '???',
-  beavers: '???s',
   seal: 'waterdoggo',
   seals: 'waterdoggos',
   bark: 'bork',
