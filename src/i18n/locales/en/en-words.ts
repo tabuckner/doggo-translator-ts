@@ -27,8 +27,6 @@ export const EN_TRANSLATION_WORDS: { [key: string]: string } = {
   shibas: 'shibes',
   samoyed: 'cloud boye',
   samoyeds: 'cloud boyes',
-  beaver: '???',
-  beavers: '???s',
   seal: 'waterdoggo',
   seals: 'waterdoggos',
   bark: 'bork',
@@ -53,6 +51,7 @@ export const EN_TRANSLATION_WORDS: { [key: string]: string } = {
   licks: 'mlems',
   licking: 'mlemming',
   his: 'hims',
+  chicken: 'chimkin',
   'you are scaring me': 'you are doing me a scare',
   'you are frightening me': 'you are doing me a frighten',
   'you are startling me': 'you are doing me a startle'
