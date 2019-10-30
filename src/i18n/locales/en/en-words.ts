@@ -55,7 +55,7 @@ export const EN_TRANSLATION_WORDS: { [key: string]: string } = {
   face: 'snoot',
   human: 'hooman',
   boy: 'boi',
-  boys: 'boyes',
+  boys: 'bois',
   lick: 'mlem',
   licked: 'mlemmed',
   licks: 'mlems',
