@@ -1,6 +1,7 @@
 export const EN_TRANSLATION_WORDS: { [key: string]: string } = {
   friend: 'fren',
   small: 'smol',
+  bear: 'grizlord',
   dog: 'doggo',
   dogs: 'doggos',
   doggy: 'doggo',
@@ -17,6 +18,7 @@ export const EN_TRANSLATION_WORDS: { [key: string]: string } = {
   'big ol doggos': 'woofers',
   'smol woofer': 'doggo',
   'smol woofers': 'doggos',
+  chunky: 'thicc', 
   corgi: 'corgo',
   corgis: 'corgos',
   pug: 'puggo',
@@ -29,6 +31,7 @@ export const EN_TRANSLATION_WORDS: { [key: string]: string } = {
   samoyeds: 'cloud boyes',
   seal: 'waterdoggo',
   seals: 'waterdoggos',
+  scorpion: 'snip snap doggo',
   bark: 'bork',
   barking: 'borking',
   hell: 'heck',
@@ -52,6 +55,7 @@ export const EN_TRANSLATION_WORDS: { [key: string]: string } = {
   licking: 'mlemming',
   his: 'hims',
   chicken: 'chimkin',
+  fooled: 'bamboozled',
   'you are scaring me': 'you are doing me a scare',
   'you are frightening me': 'you are doing me a frighten',
   'you are startling me': 'you are doing me a startle'
