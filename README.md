@@ -9,6 +9,8 @@
 
 A TypeScript library for translating words to 'Doggo' speak!
 
+[StackBlitz Demo](https://stackblitz.com/edit/angular-a7eyjg)
+
 ### Usage
 You can use the library defaults by creating an instance of the [DoggoTranslator](https://tabuckner.github.io/doggo-translator-ts/classes/doggotranslator.html) class, and using it's publicly available methods. [Read More](./examples/node/index.js)
 
